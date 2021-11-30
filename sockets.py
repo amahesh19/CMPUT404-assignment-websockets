@@ -90,7 +90,7 @@ class Client:
 @app.route('/')
 def hello():
     '''Return something coherent here.. perhaps redirect to /static/index.html '''
-    return None
+    return flask.redirect("/static/index.html", code=301)
 
 def read_ws(ws,client):
     '''A greenlet function that reads from the websocket and updates the world'''
@@ -106,6 +106,7 @@ def read_ws(ws,client):
                 break
     except:
         '''Done'''
+    return None
     
 
 @sockets.route('/subscribe')
@@ -126,7 +127,7 @@ def subscribe_socket(ws):
     finally:
         clients.remove(client)
         gevent.kill(g)
-
+    return None
 
 # I give this to you, this is how you get the raw body/data portion of a post in flask
 # this should come with flask but whatever, it's not my project.
