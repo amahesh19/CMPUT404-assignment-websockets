@@ -36,9 +36,9 @@ class World:
         self.listeners.append( listener )
 
     def update(self, entity, key, value):
-        entry = self.space.get(entity,dict())
-        entry[key] = value
-        self.space[entity] = entry
+        item = self.space.get(entity,dict())
+        item[key] = value
+        self.space[entity] = item
         self.update_listeners( entity )
 
     def set(self, entity, data):
